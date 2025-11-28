@@ -7,7 +7,7 @@ export default {
 	themeConfig: {
 		nav: [
 			{ text: 'Introduction', link: 'https://larpress.digital/' },
-			{ text: 'Demo', link: 'https://demo.larpress.digital/' },
+			{ text: 'Demo', link: 'https://demo.larpress.digital/', target: '_blank' },
 			{ text: 'Getting started', link: '/getting-started/installation' },
 			{ text: 'Modules', link: '/modules/' },
 		],
