@@ -9,7 +9,7 @@ export default defineConfig({
     
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'Guide', link: '/getting-started/introduction' },
+      { text: 'Guide', link: 'https://doc.larpress.digital/' },
       { text: 'API', link: '/api/authentication' },
       { text: 'Demo', link: 'https://demo.larpress.digital' }
     ],
@@ -19,7 +19,7 @@ export default defineConfig({
         {
           text: 'Getting Started',
           items: [
-            { text: 'Introduction', link: '/getting-started/introduction' },
+            { text: 'Introduction', link: 'https://doc.larpress.digital/' },
             { text: 'Installation', link: '/getting-started/installation' },
             { text: 'Configuration', link: '/getting-started/configuration' },
             { text: 'Quick Start', link: '/getting-started/quick-start' }

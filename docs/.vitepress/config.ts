@@ -6,7 +6,7 @@ export default {
 	ignoreDeadLinks: true,
 	themeConfig: {
 		nav: [
-			{ text: 'Introduction', link: '/getting-started/introduction' },
+			{ text: 'Introduction', link: 'https://doc.larpress.digital/' },
 			{ text: 'Getting started', link: '/getting-started/installation' },
 			{ text: 'Modules', link: '/modules/' },
 		],
@@ -14,7 +14,7 @@ export default {
 			{
 				text: 'Introduction',
 				items: [
-					{ text: 'What is larpress?', link: '/getting-started/introduction' },
+					{ text: 'What is larpress?', link: 'https://doc.larpress.digital/' },
 				],
 			},
 			{
