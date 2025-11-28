@@ -6,7 +6,8 @@ export default {
 	ignoreDeadLinks: true,
 	themeConfig: {
 		nav: [
-			{ text: 'Introduction', link: 'https://doc.larpress.digital/' },
+			{ text: 'Introduction', link: 'https://larpress.digital/' },
+			{ text: 'Demo', link: 'https://demo.larpress.digital/' },
 			{ text: 'Getting started', link: '/getting-started/installation' },
 			{ text: 'Modules', link: '/modules/' },
 		],
