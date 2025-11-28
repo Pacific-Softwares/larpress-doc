@@ -3,6 +3,7 @@ export default {
 	description: 'Modern Laravel CMS',
 	cleanUrls: true,
 	lastUpdated: true,
+	ignoreDeadLinks: true,
 	themeConfig: {
 		nav: [
 			{ text: 'Introduction', link: '/getting-started/introduction' },
