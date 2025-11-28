@@ -1,0 +1,174 @@
+### 1. Access Admin Panel
+
+After installation, access your admin panel:
+
+```
+http://your-domain.com/admin
+```
+
+Login with credentials created during installation.
+
+### 2. Configure Site Settings
+
+Go to **Settings** → **General**:
+
+- Set site name and description
+- Upload logo and favicon
+- Configure email settings
+- Set timezone
+
+### 3. Create Your First Page
+
+**Content** → **Pages** → **New Page**:
+
+```markdown
+Title: Welcome to My Site
+Slug: welcome
+Status: Published
+
+Content:
+Welcome to my amazing website built with larpress!
+```
+
+### 4. Create a Menu
+
+**Content** → **Menus** → **Create Menu**:
+
+```
+Name: Main Menu
+Location: Header
+
+Items:
+- Home (/)
+- About (/about)
+- Contact (/contact)
+```
+
+## Common Tasks
+
+### Creating Content
+
+#### Blog Post
+
+```markdown
+Title: My First Blog Post
+Category: News
+Tags: laravel, cms
+Featured Image: (upload image)
+Status: Published
+
+Write your amazing content here...
+```
+
+#### HTML Block
+
+```html
+<div class="alert alert-info">
+  <strong>Notice:</strong> This is a reusable HTML block!
+</div>
+```
+
+Use shortcode: `[block:alert-info]`
+
+### Managing Users
+
+**Access Control** → **Users** → **Create User**:
+
+```
+Name: John Doe
+Email: john@example.com
+Role: Editor
+Password: (generate secure password)
+```
+
+### Creating Roles
+
+**Access Control** → **Roles** → **Create Role**:
+
+```
+Name: Content Manager
+Permissions:
+☑ View content
+☑ Create content
+☑ Edit content
+☐ Delete content
+☐ Access settings
+```
+
+### Email Templates
+
+**Communication** → **Email Templates** → **Create Template**:
+
+```
+Name: Welcome Email
+Subject: Welcome to {site_name}!
+Type: User Registration
+
+Body:
+Hello {user_name},
+
+Welcome to {site_name}! We're excited to have you.
+
+Best regards,
+The Team
+```
+
+### Creating a Module
+
+```bash
+# Generate module structure
+php artisan module:make Blog
+
+# Edit module files
+modules/Blog/
+├── Http/Controllers/
+├── Models/
+├── Views/
+├── routes/
+└── module.json
+```
+
+### Creating a Theme
+
+```bash
+# Generate theme structure
+php artisan theme:make MyTheme
+
+# Edit theme files
+themes/MyTheme/
+├── views/
+├── assets/
+├── public/
+└── theme.json
+```
+
+
+### Performance Tips
+
+1. Enable Redis for caching
+2. Use queue for emails
+3. Optimize images before upload
+4. Enable OPcache
+5. Use CDN for assets
+
+### Security Tips
+
+1. Change admin URL
+2. Enable 2FA
+3. Use strong passwords
+4. Enable IP restrictions
+5. Keep larpress updated
+6. Regular backups
+
+Happy building with larpress! 🚀
+
+## Next Steps
+
+Now that you're up and running:
+
+1. [Explore Admin Panel Features](/admin-panel/overview)
+2. [Learn Module Development](/modules/introduction)
+3. [Customize Your Theme](/themes/introduction)
+4. [Set Up API Access](/api/authentication)
+5. [Deploy to Production](/deployment/checklist)
+
