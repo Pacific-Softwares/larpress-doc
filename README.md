@@ -155,6 +155,6 @@ MIT License - see LICENSE file for details.
 ## Links
 
 - [larpress Website](https://larpress.digital)
-- [GitHub Repository](https://github.com/yourusername/larpress)
+- [GitHub Repository](https://github.com/Pacific-Softwares/larpress-demo)
 - [Discord Community](https://discord.gg/larpress)
 

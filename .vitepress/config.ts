@@ -144,7 +144,7 @@ export default defineConfig({
     },
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/yourusername/larpress' },
+      { icon: 'github', link: 'https://github.com/Pacific-Softwares/larpress-demo' },
       { icon: 'twitter', link: 'https://twitter.com/larpress' }
     ],
 
@@ -158,7 +158,7 @@ export default defineConfig({
     },
 
     editLink: {
-      pattern: 'https://github.com/yourusername/larpress-docs/edit/main/docs/:path',
+      pattern: 'https://github.com/Pacific-Softwares/larpress-demo-docs/edit/main/docs/:path',
       text: 'Edit this page on GitHub'
     }
   },

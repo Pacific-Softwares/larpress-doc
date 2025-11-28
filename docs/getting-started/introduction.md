@@ -137,6 +137,6 @@ If you need assistance:
 
 - 📚 Check the [documentation](/getting-started/introduction)
 - 💬 Join our [Discord community](https://discord.gg/larpress)
-- 🐛 Report bugs on [GitHub](https://github.com/yourusername/larpress/issues)
+- 🐛 Report bugs on [GitHub](https://github.com/Pacific-Softwares/larpress/issues)
 - 📧 Email support at support@larpress.digital
 

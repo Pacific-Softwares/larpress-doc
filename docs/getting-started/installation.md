@@ -100,11 +100,11 @@ What the installer configures
 
 ```bash
 # Clone from GitHub
-git clone https://github.com/yourusername/larpress.git
+git clone https://github.com/Pacific-Softwares/larpress-demo.git
 cd larpress
 
 # Or download ZIP
-wget https://github.com/yourusername/larpress/archive/main.zip
+wget https://github.com/Pacific-Softwares/larpress-demo/archive/main.zip
 unzip main.zip
 cd larpress-main
 ```
@@ -162,7 +162,7 @@ Keep your database credentials handy. You'll need:
 
 ```bash
 # Clone repository
-git clone https://github.com/yourusername/larpress.git
+git clone https://github.com/Pacific-Softwares/larpress-demo.git
 cd larpress
 
 # Copy environment file
@@ -237,5 +237,5 @@ If you encounter issues:
 
 - Check [Common Issues](/troubleshooting)
 - Join [Discord Community](https://discord.gg/larpress)
-- Create [GitHub Issue](https://github.com/yourusername/larpress/issues)
+- Create [GitHub Issue](https://github.com/Pacific-Softwares/larpress/issues)
 
