@@ -248,11 +248,8 @@ Ready to create your own module?
 
 ## Module Development Resources
 
-- [Module Structure](/modules/structure)
-- [Service Providers](/modules/service-providers)
-- [Routes & Controllers](/modules/routes-controllers)
-- [Database & Migrations](/modules/database)
-- [Publishing Modules](/modules/publishing)
+- [Creating Modules](/modules/creating)
+- [Module Management](/modules/system/modules)
 
 ## Best Practices
 
@@ -316,6 +313,5 @@ DB::select("SELECT * FROM posts WHERE status = '$status'");
 ## Next Steps
 
 - [Create Your First Module](/modules/creating)
-- [Module Structure Deep Dive](/modules/structure)
-- [Publishing to Marketplace](/modules/publishing)
+- [Module Management](/modules/system/modules)
 

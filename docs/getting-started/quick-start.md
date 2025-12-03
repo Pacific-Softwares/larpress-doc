@@ -166,9 +166,7 @@ Happy building with larpress! 🚀
 
 Now that you're up and running:
 
-1. [Explore Admin Panel Features](/admin-panel/overview)
-2. [Learn Module Development](/modules/introduction)
-3. [Customize Your Theme](/themes/introduction)
-4. [Set Up API Access](/api/authentication)
-5. [Deploy to Production](/deployment/checklist)
+1. [Learn Module Development](/modules/introduction)
+2. [Customize Your Theme](/modules/system/themes)
+3. [Configure Your Application](/getting-started/configuration)
 

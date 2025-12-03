@@ -290,6 +290,6 @@ Admin Panel → System → Languages
 ## Next Steps
 
 - [Quick Start Guide](/getting-started/quick-start)
-- [Admin Panel Overview](/admin-panel/overview)
 - [Module Development](/modules/introduction)
+- [Theme Management](/modules/system/themes)
 

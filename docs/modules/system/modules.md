@@ -45,8 +45,41 @@ modules/{moduleSlug}/
 └── module.json
 ```
 
-### Download Sample Module
+## Installing Modules
 
+### Via Admin Panel - Marketplace
+
+Access the module marketplace via **System → Modules → Add Module** to browse and install modules from the API marketplace.
+
+**Features:**
+- **Browse Modules** - View featured, popular, recommended, and favorite modules
+- **Search & Filter** - Search by name, description, author, or tags. Filter by category
+- **Install Modules** - One-click installation directly from the marketplace
+- **Update Modules** - Automatic update detection and one-click updates
+- **Activate/Deactivate** - Manage module activation status
+- **Uninstall** - Remove modules (must be deactivated first)
+- **Favorites** - Save modules to your favorites list
+- **Reviews** - View and submit reviews for modules (premium members can review premium modules)
+- **Support** - Get support for installed modules (premium members get support for premium modules)
+- **Module Details** - View detailed information, screenshots, and reviews
+
+**Installation Process:**
+1. Browse modules in the marketplace
+2. Click **Install** on your desired module
+3. The module is automatically downloaded and installed
+4. Click **Activate** to enable the module
+
+**Membership Types:**
+- **Free Users** - Can install and use free modules only
+- **Premium Users** - Can install and use both free and premium modules
+- Premium users can also review premium modules and get support for them
+
+### Via Admin Panel - Manual Upload
+
+1. Navigate to **System** → **Modules** in the admin panel.
+2. Click **Upload Module** and select your module ZIP file.
+3. After upload, the module will appear in the list—click **Activate** (or **Enable**) to turn it on.
+4. During activation the installer will register service providers, run migrations, publish assets, and execute any tasks you defined in `Installer.json`.
 
 ### Use the Starter (Recommended)
 
@@ -113,6 +146,40 @@ Notes:
 
 - Uploading a ZIP with the same module `slug` updates it in place (with backup, cache clear, and asset republish).
 
+
+## Managing Modules
+
+### Module Settings
+
+Active modules can have configurable settings. Access module settings via **System → Modules → [Module Name] → Settings**.
+
+**How it works:**
+- Settings are automatically generated from the module's config file (`Config/{moduleSlug}.php`)
+- Form fields are created based on config values (text inputs, toggles, selects, etc.)
+- Helper text is extracted from config file comments
+- Settings are saved directly to the config file
+- Config cache is automatically cleared after saving
+
+**Supported Field Types:**
+- **Boolean values** → Toggle switches
+- **Numeric values** → Number inputs
+- **Arrays** → Tags input or Select (multi-select) for predefined options
+- **Strings** → Text inputs
+- **Key-value pairs** → Key-value field
+
+**Special Handling:**
+- Fields marked as "read-only" in config comments are excluded
+- Comments above config keys are used as helper text
+- Options can be defined in comments for dropdown fields
+
+### Module Usage Instructions
+
+Modules can provide usage instructions that are displayed in the admin panel. Instructions can be provided in two ways:
+
+1. **USAGE.md File** - Create a `USAGE.md` file in the module root directory
+2. **Service Provider Method** - Add a `getUsageInstructions()` method to your module's service provider
+
+The instructions are displayed when viewing a module in the admin panel, helping users understand how to use the module.
 
 ## Module Development
 

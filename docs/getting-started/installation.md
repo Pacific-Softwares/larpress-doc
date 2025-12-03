@@ -40,7 +40,70 @@ php artisan storage:link
 If SSH is not available, you can skip this step as dependencies are already included.
 
 4) Point the web root
-- Ensure your domain points to the project’s `public/` directory.
+- Ensure your domain points to the project's `public/` directory.
+
+### Nginx Configuration
+
+If you're using **Nginx** as your web server, you need to make two important changes to your Nginx configuration:
+
+**Change 1: Set the root directive to the public directory**
+
+```nginx
+root <PATH_TO_YOUR_PROJECT_DIR>/public;
+```
+
+**Change 2: Use `$realpath_root` instead of `$document_root` in fastcgi_param**
+
+```nginx
+fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
+```
+
+**Complete Nginx server block example:**
+
+```nginx
+server {
+    listen 80;
+    server_name your-domain.com;
+    root <PATH_TO_YOUR_PROJECT_DIR>/public;
+
+    add_header X-Frame-Options "SAMEORIGIN";
+    add_header X-Content-Type-Options "nosniff";
+
+    index index.php;
+
+    charset utf-8;
+
+    location / {
+        try_files $uri $uri/ /index.php?$query_string;
+    }
+
+    location = /favicon.ico { access_log off; log_not_found off; }
+    location = /robots.txt  { access_log off; log_not_found off; }
+
+    error_page 404 /index.php;
+
+    location ~ \.php$ {
+        fastcgi_pass unix:/var/run/php/php8.2-fpm.sock;
+        fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
+        include fastcgi_params;
+    }
+
+    location ~ /\.(?!well-known).* {
+        deny all;
+    }
+}
+```
+
+::: tip
+Replace `<PATH_TO_YOUR_PROJECT_DIR>` with the actual path to your project directory. For example: `/var/www/larpress` or `/home/user/larpress`.
+:::
+
+After making these changes, reload Nginx:
+
+```bash
+sudo nginx -t  # Test configuration
+sudo systemctl reload nginx  # Reload Nginx
+```
 
 5) Run the web installer
 - Visit your domain (or `https://your-domain.com/install`). Follow the wizard to complete:
@@ -100,11 +163,11 @@ What the installer configures
 
 ```bash
 # Clone from GitHub
-git clone https://github.com/Pacific-Softwares/larpress-demo.git
+git clone https://github.com/yourusername/larpress.git
 cd larpress
 
 # Or download ZIP
-wget https://github.com/Pacific-Softwares/larpress-demo/archive/main.zip
+wget https://github.com/yourusername/larpress/archive/main.zip
 unzip main.zip
 cd larpress-main
 ```
@@ -162,7 +225,7 @@ Keep your database credentials handy. You'll need:
 
 ```bash
 # Clone repository
-git clone https://github.com/Pacific-Softwares/larpress-demo.git
+git clone https://github.com/yourusername/larpress.git
 cd larpress
 
 # Copy environment file
@@ -227,15 +290,13 @@ php artisan storage:link
 After installation:
 
 1. [Configure your application](/getting-started/configuration)
-2. [Explore the admin panel](/admin-panel/overview)
-3. [Create your first module](/modules/creating)
-4. [Install a theme](/themes/introduction)
+2. [Create your first module](/modules/creating)
+3. [Install a theme](/modules/system/themes)
 
 ## Getting Help
 
 If you encounter issues:
 
-- Check [Common Issues](/troubleshooting)
 - Join [Discord Community](https://discord.gg/larpress)
-- Create [GitHub Issue](https://github.com/Pacific-Softwares/larpress/issues)
+- Create [GitHub Issue](https://github.com/yourusername/larpress/issues)
 

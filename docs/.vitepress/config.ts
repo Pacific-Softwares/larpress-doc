@@ -3,11 +3,9 @@ export default {
 	description: 'Modern Laravel CMS',
 	cleanUrls: true,
 	lastUpdated: true,
-	ignoreDeadLinks: true,
 	themeConfig: {
 		nav: [
-			{ text: 'Introduction', link: 'https://larpress.digital/' },
-			{ text: 'Demo', link: 'https://demo.larpress.digital/', target: '_blank' },
+			{ text: 'Introduction', link: '/getting-started/introduction' },
 			{ text: 'Getting started', link: '/getting-started/installation' },
 			{ text: 'Modules', link: '/modules/' },
 		],
@@ -15,7 +13,7 @@ export default {
 			{
 				text: 'Introduction',
 				items: [
-					{ text: 'What is larpress?', link: 'https://doc.larpress.digital/' },
+					{ text: 'What is larpress?', link: '/getting-started/introduction' },
 				],
 			},
 			{

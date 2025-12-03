@@ -591,7 +591,34 @@ Optional fields commonly used: `description`, `author`, `screenshot`, `features`
 
 ## Installing Themes
 
-### Via Admin Panel
+### Via Admin Panel - Marketplace
+
+Access the theme marketplace via **System → Themes → Add Theme** to browse and install themes from the API marketplace.
+
+**Features:**
+- **Browse Themes** - View featured, popular, recommended, and favorite themes
+- **Search & Filter** - Search by name, description, author, or tags. Filter by category
+- **Install Themes** - One-click installation directly from the marketplace
+- **Update Themes** - Automatic update detection and one-click updates
+- **Activate/Deactivate** - Manage theme activation status
+- **Uninstall** - Remove themes (must be deactivated first)
+- **Favorites** - Save themes to your favorites list
+- **Reviews** - View and submit reviews for themes (premium members can review premium themes)
+- **Support** - Get support for installed themes (premium members get support for premium themes)
+- **Theme Details** - View detailed information, screenshots, and reviews
+
+**Installation Process:**
+1. Browse themes in the marketplace
+2. Click **Install** on your desired theme
+3. The theme is automatically downloaded and installed
+4. Click **Activate** to make it your active theme
+
+**Membership Types:**
+- **Free Users** - Can install and use free themes only
+- **Premium Users** - Can install and use both free and premium themes
+- Premium users can also review premium themes and get support for them
+
+### Via Admin Panel - Manual Upload
 
 1. **System** → **Themes**
 
@@ -605,151 +632,59 @@ Notes:
 
 - Re‑uploading a theme with the same `slug` updates it safely (with backup and cache clear).
 
-## Theme Demo Manager
+- You can also download a sample theme template to get started
 
-The Theme Demo Manager allows you to manage demo data for your active theme. Access it from **System → Themes** by clicking the demo management option for any active theme.
+## Theme Demo Data Manager
 
-### Accessing Theme Demo Manager
-
-1. Navigate to **System → Themes**
-2. Find your active theme in the list
-3. Click the demo management option (usually a button or link)
-4. You'll be taken to the Theme Demo Manager page for that specific theme
-
-::: warning
-The Theme Demo Manager only works with **active themes**. Inactive themes cannot have their demo data managed.
-:::
+The Theme Demo Data Manager allows you to manage demo data for your active theme. Access it via **System → Themes → [Theme Name] → Demo Data Manager**.
 
 ### Features
 
-The Theme Demo Manager provides three main functions:
+**Backup Demo Data:**
+- Export all current demo data (menus, contents, HTML blocks, sliders, content types, categories) to a JSON file
+- Creates a downloadable backup file with timestamp
+- File format: `theme-demo-data-{theme-slug}-{date-time}.json`
 
-#### 1. Backup Demo Data
+**Import from File:**
+- Upload a previously exported JSON backup file
+- Restores all demo data from the backup
+- **Warning:** This will replace all existing data in:
+  - Menus (all menu items and structure)
+  - Content Types (all content type definitions)
+  - Content Type Categories (all category data)
+  - Contents (all pages and content items)
+  - HTML Blocks (all HTML block content)
+  - Sliders (all slider configurations)
 
-Export all your current demo data to a JSON file for backup purposes.
+**Reset to Default:**
+- Restores the theme's original demo data from the theme package
+- Uses the `demo/demo.json` file from the theme directory
+- **Warning:** This will delete all current data and replace it with default demo data
 
-**What gets exported:**
-- All menus (including nested menu structure)
-- All content types
-- All content type categories
-- All content/pages (with relationships to types and categories)
-- All HTML blocks
-- All sliders
+### How to Use
 
-**How to use:**
-1. Click the **"Download Backup"** button in the Backup Demo Data section
-2. A JSON file will be downloaded with a timestamp (e.g., `theme-demo-data-my-theme-2024-01-15-143022.json`)
-3. Save this file securely - you can use it to restore your data later
+1. **Export Backup:**
+   - Navigate to Theme Demo Data Manager
+   - Click **Download Backup** in the "Backup Demo Data" section
+   - Save the JSON file for later use
 
-**File location:**
-- The backup is also saved to `public/themes/{theme-slug}/demo/demo.json` for reference
+2. **Import from File:**
+   - Click **Import from File** in the "Import from File" section
+   - Select your previously exported JSON file
+   - Confirm the import (this action cannot be undone)
+   - All existing data will be replaced with the imported data
 
-#### 2. Import from File
-
-Restore previously exported demo data from a JSON backup file.
-
-**Requirements:**
-- File must be a valid JSON file
-- Maximum file size: 10MB
-- File must contain the expected data structure
-
-**What happens:**
-- **All existing data will be permanently deleted** in the following tables:
-  - Menus
-  - Content Types
-  - Content Type Categories
-  - Contents/Pages
-  - HTML Blocks
-  - Sliders
-- Data from the imported file will replace everything
-
-**How to use:**
-1. Click the **"Import from File"** button in the Import from File section
-2. Select your JSON backup file
-3. Confirm the import in the warning modal
-4. Wait for the import to complete
-
-::: danger
-Importing demo data is **irreversible**. All existing data in menus, contents, HTML blocks, and sliders will be permanently deleted. Always create a backup before importing!
-:::
-
-#### 3. Reset to Default
-
-Restore the theme's original demo data from the theme package.
-
-**What happens:**
-- The system looks for `public/themes/{theme-slug}/demo/demo.json`
-- If found, it imports that data
-- **All existing data will be permanently deleted** and replaced with the default demo data
-
-**How to use:**
-1. Click the **"Reset to Default"** button in the Reset to Default section
-2. Confirm the reset in the warning modal
-3. Wait for the reset to complete
-
-::: warning
-If the theme doesn't have a `demo/demo.json` file, the reset will fail with an error message.
-:::
-
-### Data Structure
-
-The demo data JSON file contains the following structure:
-
-```json
-{
-    "menus": [...],                    // Array of menu items with nested children
-    "content_type": [...],             // Array of content type definitions
-    "content_type_categories": [...],   // Array of content type categories
-    "contents": [...],                 // Array of content/pages with type and category relationships
-    "html_blocks": [...],              // Array of HTML block definitions
-    "sliders": [...]                   // Array of slider configurations
-}
-```
-
-### Import Process
-
-When importing (either from file or reset to default), the system:
-
-1. **Truncates all existing data** in the affected tables
-2. **Imports menus** with proper parent-child relationships
-3. **Imports content types** first (required for content)
-4. **Imports content type categories** (required for content)
-5. **Imports contents/pages** with proper type and category relationships
-6. **Imports HTML blocks**
-7. **Imports sliders**
-
-The import process handles:
-- Creating content types and categories if they don't exist (by slug)
-- Maintaining relationships between content and their types/categories
-- Preserving nested menu structures
-- Setting proper timestamps
+3. **Reset to Default:**
+   - Click **Reset to Default** in the "Reset to Default" section
+   - Confirm the reset action
+   - All current data will be replaced with the theme's default demo data
 
 ### Best Practices
 
-1. **Always backup before importing** - Use the Backup Demo Data feature before making any changes
-2. **Test on a development site first** - Don't import demo data on a production site with important content
-3. **Keep backup files** - Save your backup JSON files in a safe location
-4. **Verify theme has demo data** - Check that `public/themes/{theme-slug}/demo/demo.json` exists before using Reset to Default
-5. **Review imported data** - After importing, review your site to ensure everything imported correctly
-
-### Troubleshooting
-
-**"Demo data not found!" error:**
-- The theme doesn't have a `demo/demo.json` file
-- Solution: Create the demo data file or use Import from File instead
-
-**"Invalid JSON format!" error:**
-- The JSON file is malformed or doesn't match the expected structure
-- Solution: Verify your JSON file is valid and contains the required sections
-
-**"File too large!" error:**
-- The import file exceeds 10MB
-- Solution: Reduce the file size or split the data into smaller imports
-
-**Import fails silently:**
-- Check the error notification for specific details
-- Verify all required data sections are present in your JSON file
-- Ensure database permissions allow truncating tables
+- Always create a backup before importing or resetting
+- Use backups to transfer demo data between installations
+- Reset to default when you want to start fresh with the theme's original demo content
+- Import from file when you want to restore a specific backup
 
 ## Theme Development
 

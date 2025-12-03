@@ -440,8 +440,5 @@ php artisan test --testsuite=Module:Blog
 
 ## Next Steps
 
-- [Module Structure](/modules/structure)
-- [Routes & Controllers](/modules/routes-controllers)
-- [Database & Migrations](/modules/database)
-- [Publishing Modules](/modules/publishing)
+- [Module Management](/modules/system/modules)
 
