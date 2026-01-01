@@ -21,6 +21,16 @@ Configure your site's basic information and branding:
 - **Logo** - Upload your site logo (PNG with transparent background recommended, max 2MB)
 - **Favicon** - Upload your site favicon (32x32 or 16x16 PNG/ICO recommended, max 2MB)
 
+### Purchase Token
+
+Configure your purchase token for marketplace access:
+
+- **Purchase Token** - Your purchase token is used to access modules and themes from the marketplace. You can obtain this token from your CodeCanyon purchase or contact us directly. This token is automatically generated when you first access the Add Module page, or you can set it manually here.
+
+::: tip
+The purchase token is used for authentication when downloading modules and themes from the marketplace. Keep this token secure and don't share it publicly.
+:::
+
 ## Contact Tab
 
 ### Contact Information
@@ -111,7 +121,7 @@ Configure analytics and tracking services:
 
 Configure core system behavior:
 
-- **Maintenance Mode** - Enable to prevent public access to your site
+- **Maintenance Mode** - Enable to prevent public access to your site. When enabled, regular users will see the maintenance message, but admin users can still access the admin panel by logging in at `{base_url}/admin/login`
 - **Maintenance Message** - Custom message displayed during maintenance (visible when maintenance mode is enabled)
 - **Allow Registration** - Toggle to allow/disallow new user registrations
 - **Require Email Verification** - Toggle to require email verification for new users
@@ -237,14 +247,14 @@ Configure file storage:
 
 ### Amazon S3 Configuration
 
-When S3 is selected as the filesystem disk, configure AWS credentials:
+When S3 is selected as the filesystem disk, configure S3 credentials:
 
-- **AWS Access Key ID** (Required) - Your AWS access key
-- **AWS Secret Access Key** (Required) - Your AWS secret key
-- **AWS Default Region** (Required) - AWS region where your S3 bucket is located (e.g., `us-east-1`, `eu-north-1`)
-- **AWS Bucket** (Required) - Your S3 bucket name
-- **AWS Endpoint** (Optional) - S3 endpoint URL
-- **AWS URL** (Optional) - Public URL for accessing files
+- **S3 Access Key ID** (Required) - Your S3 access key
+- **S3 Secret Access Key** (Required) - Your S3 secret key
+- **S3 Default Region** (Required) - S3 region where your bucket is located (e.g., `us-east-1`, `eu-north-1`)
+- **S3 Bucket** (Required) - Your S3 bucket name
+- **S3 Endpoint** (Optional) - S3 endpoint URL
+- **S3 URL** (Optional) - Public URL for accessing files
 - **Use Path Style Endpoint** - Enable if using path-style endpoint (required for some S3-compatible services)
 
 ::: tip
@@ -278,8 +288,9 @@ $siteName = Setting::get('site_name', 'Default Value');
 ### Environment Variables
 
 Some settings automatically update environment variables:
-- Filesystem disk settings (`FILESYSTEM_DISK`, `AWS_*`)
+- Filesystem disk settings (`FILESYSTEM_DISK`, `S3_*`)
 - Email settings (`MAIL_*`)
+- Timezone setting (`TIME_ZONE`)
 
 These changes are written to the `.env` file and take effect immediately after saving.
 

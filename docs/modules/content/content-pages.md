@@ -152,6 +152,49 @@ Shortcodes are replaced when content is retrieved using the helper functions.
 6. **Additional Data** - Use additional data fields for custom metadata that doesn't fit standard fields.
 7. **Popular Flag** - Mark featured or important content as popular for easy filtering.
 
+## Translations
+
+If multi-language support is enabled (via **Admin Panel → Settings → Languages → Enable Multi Languages**), you can add translations for content in different languages.
+
+### Accessing Translations
+
+1. Navigate to **Admin Panel → Content → Content/Pages**
+2. Edit an existing content item
+3. Click the **Manage Translations** button in the header actions
+4. The translation modal will open with tabs for each available language
+
+### Translatable Fields
+
+The following fields can be translated:
+
+- **Title** - Translated page title
+- **Short Description** - Translated short description/summary
+- **Description** - Translated full content description
+
+### Translation Interface
+
+The translation modal provides:
+
+- **Language Tabs** - One tab for each enabled language (English is the default language)
+- **Completion Badge** - A checkmark (✓) badge appears on language tabs when all required translations are complete
+- **Form Fields** - Input fields for each translatable field in the selected language
+- **Auto-save** - Translations are saved when you submit the form
+
+### How It Works
+
+- English is the default language and cannot be translated (it serves as the base)
+- Translations are stored separately in the `translations` table
+- Each translation is linked to the content record via `translatable_type` and `translatable_id`
+- When viewing content in a specific language, the system automatically retrieves the appropriate translation
+- If a translation doesn't exist, the system falls back to the English version
+
+### Best Practices for Translations
+
+1. **Complete All Fields** - Translate all fields (title, short description, description) for consistency
+2. **Maintain Quality** - Ensure translations are accurate and culturally appropriate
+3. **Check Completion** - Use the checkmark badge to quickly identify which languages need translations
+4. **Review Regularly** - Periodically review translations to ensure they're up to date with content changes
+
 ## Tips
 
 - Slugs are auto-generated from titles but can be manually edited
@@ -159,3 +202,4 @@ Shortcodes are replaced when content is retrieved using the helper functions.
 - Use the order field to control display order when listing content
 - Thumbnail and banner images are stored using the configured filesystem disk
 - Rich editor supports HTML, so you can add custom markup if needed
+- Translations work independently - you can have different content for different languages while maintaining the same structure
