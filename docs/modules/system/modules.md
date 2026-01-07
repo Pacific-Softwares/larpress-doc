@@ -51,6 +51,8 @@ modules/{moduleSlug}/
 
 Access the module marketplace via **System → Modules → Add Module** to browse and install modules from the API marketplace.
 
+![Add Modules](/src/add-modules.png)
+
 **Features:**
 - **Browse Modules** - View featured, popular, recommended, and favorite modules
 - **Search & Filter** - Search by name, description, author, or tags. Filter by category

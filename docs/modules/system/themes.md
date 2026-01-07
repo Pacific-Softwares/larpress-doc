@@ -595,6 +595,8 @@ Optional fields commonly used: `description`, `author`, `screenshot`, `features`
 
 Access the theme marketplace via **System → Themes → Add Theme** to browse and install themes from the API marketplace.
 
+![Theme List](/src/theme-list.png)
+
 **Features:**
 - **Browse Themes** - View featured, popular, recommended, and favorite themes
 - **Search & Filter** - Search by name, description, author, or tags. Filter by category

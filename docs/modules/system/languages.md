@@ -7,7 +7,7 @@ Manage available locales and translation files through the admin panel. Access l
 The Languages module allows you to:
 - Add new languages to your application
 - Configure language settings (name, code, RTL support)
-- Edit translation files for each language
+- Edit translation tokens for each language across all themes
 - Manage which languages are available to users
 
 ## Creating a Language
@@ -41,6 +41,8 @@ To add a new language:
 
 The language list displays all available languages with the following information:
 
+![Language List](/src/language-list.png)
+
 - **Name** - Language display name (searchable and sortable)
 - **Code** - Language code (sortable)
 - **RTL** - Shows "Yes" or "No" badge indicating if RTL is enabled
@@ -49,11 +51,16 @@ The language list displays all available languages with the following informatio
 
 ### Language Actions
 
-Each language (except English) has the following actions available:
+Each language has the following actions available:
 
 - **Edit** - Modify language name, code, and RTL settings
-- **Edit Files** - Open the translation file editor to manage translations for this language
+  - Hidden for English language (protected)
+- **Edit Tokens** - Open the translation token editor to manage translations for all themes
+  - Available for all languages including English
+  - Allows editing language translation tokens across all themes
+  - Opens the translation file editor interface
 - **Delete** - Remove the language from the system
+  - Hidden for English language (protected)
 
 ### Protected Language
 
@@ -64,18 +71,25 @@ The **English** language (code: `en`) is protected and cannot be:
 
 This ensures that English always remains available as a fallback language.
 
-## Editing Translation Files
+## Editing Translation Tokens
 
-To edit translation files for a language:
+To edit translation tokens for a language:
 
 1. Navigate to **Admin Panel → System → Languages**
 2. Find the language you want to edit
-3. Click **Edit Files** action button
-4. The translation file editor will open, allowing you to:
-   - View all translation keys
-   - Edit translation values
+3. Click the **Edit Tokens** action button (available for all languages)
+4. The translation token editor will open, allowing you to:
+
+![Language Token Editor](/src/language-token-edit.png)
+   - View all translation keys/tokens
+   - Edit translation values for all themes
    - Add new translations
    - Search for specific translations
+   - Manage translations across multiple themes
+
+::: note
+The "Edit Tokens" action is available for all languages, including English. This allows you to manage translation tokens for all themes in the system.
+:::
 
 ## Language Code Standards
 
@@ -140,4 +154,5 @@ Language settings are integrated with the main Settings page:
 - Translation files are organized by language code in the `lang/` directory
 - You can have multiple languages active simultaneously
 - Users can switch between languages if multi-language is enabled in settings
-- The "Edit Files" action is the primary way to manage translations after creating a language
+- The "Edit Tokens" action is the primary way to manage translations after creating a language
+- Translation tokens can be edited for all themes simultaneously through the token editor

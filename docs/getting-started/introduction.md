@@ -16,6 +16,8 @@ larpress is a complete content management system and application framework built
 - **User Management** - Comprehensive user, role, and permission system
 - **Developer Friendly** - Clean code, extensive documentation, and API
 
+![Admin Dashboard](/src/dashboard.png)
+
 ## Who is larpress For?
 
 larpress is perfect for:

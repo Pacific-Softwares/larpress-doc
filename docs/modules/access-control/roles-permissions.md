@@ -2,6 +2,8 @@
 
 Control access using role-based permissions, with guards for system roles.
 
+![Roles and Permissions](/src/role-and-permissions.png)
+
 ## Form highlights
 - Edit role name and guard; defaults to the `web` guard
 - System roles (`super_admin`, `admin`, `user`) stay locked against edits or deletion

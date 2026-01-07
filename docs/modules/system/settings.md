@@ -4,6 +4,8 @@ Configure global application settings through the admin panel. Access settings v
 
 All settings are organized into themed tabs for easy navigation and management.
 
+![Settings Page](/src/setting-update.png)
+
 ## General Tab
 
 ### Site Information

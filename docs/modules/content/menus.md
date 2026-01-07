@@ -2,6 +2,8 @@
 
 Build hierarchical navigation menus with per-location settings.
 
+![Menu Manager](/src/menu-manager.png)
+
 ## Form highlights
 - Define name, parent, location, and URL/target options
 - `is_base_url` toggle prepends the site URL automatically

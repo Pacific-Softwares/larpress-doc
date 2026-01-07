@@ -2,6 +2,8 @@
 
 Configure password strength, expiration, and lockout strategy in one form.
 
+![Password Policy Settings](/src/password-policy.png)
+
 ## Options
 - Minimum length plus toggle switches for uppercase, lowercase, numbers, and symbols
 - Optional expiry window, history depth, and lockout thresholds (attempts + duration)
