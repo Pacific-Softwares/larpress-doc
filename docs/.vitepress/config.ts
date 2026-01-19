@@ -3,7 +3,14 @@ export default {
 	description: 'Modern Laravel CMS',
 	cleanUrls: true,
 	lastUpdated: true,
+	head: [
+		['link', { rel: 'icon', href: '/logo/LP-icon.ico' }],
+		['link', { rel: 'apple-touch-icon', href: '/logo/larpress-icon.svg' }],
+	],
 	themeConfig: {
+		logo: '/logo/larpress-logo.svg',
+		logoDark: '/logo/larpress-logo-dark.svg',
+		siteTitle: 'larpress',
 		nav: [
 			{ text: 'Introduction', link: '/getting-started/introduction' },
 			{ text: 'Getting started', link: '/getting-started/installation' },

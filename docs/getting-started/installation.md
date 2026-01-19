@@ -17,18 +17,57 @@ larpress offers multiple installation methods:
 
 Use this when you have a hosting control panel with a browser File Manager.
 
-1) Upload package
-- Download the larpress release ZIP.
-- In your panel, open File Manager and navigate to your target directory:
-  - Root domain: `public_html/`
-  - Subdomain/addon: that site’s document root
-- Upload the ZIP to the target directory.
+### Step 1: Upload Package
 
-2) Extract files
-- Use “Extract” in File Manager to unzip the archive into the target directory.
+1. Download the larpress release ZIP.
+2. In your panel, open File Manager and navigate to your target directory:
+   - Root domain: `public_html/`
+   - Subdomain/addon: that site's document root
+3. Upload the ZIP to the target directory.
 
-3) Install dependencies (Optional)
-- The package already includes `vendor/` and pre-built npm assets, so this step is **optional**.
+![Upload ZIP to cPanel](/src/cpanel-zip-upload.png)
+
+### Step 2: Extract Files
+
+Use "Extract" in File Manager to unzip the archive into the target directory.
+
+![Extract ZIP in cPanel](/src/cpanel-zip-extract.png)
+
+### Step 3: Move Files to public_html
+
+If you extracted the ZIP in a subdirectory, move all files to the `public_html/` directory (or your site's document root).
+
+![Move Files to public_html](/src/cpanel-move-to-public_html.png)
+
+### Step 4: Create Database
+
+Before running the installer, create a MySQL database and user:
+
+1. **Create Database:**
+   - Go to MySQL Databases in cPanel
+   - Create a new database (e.g., `larpress_db`)
+
+![Create Database in cPanel](/src/cpanel-databse-create.png)
+
+2. **Create Database User:**
+   - Create a new MySQL user (e.g., `larpress_user`)
+   - Set a strong password
+
+![Create Database User in cPanel](/src/cpanel-databse-usere-create.png)
+
+3. **Assign Permissions:**
+   - Add the user to the database
+   - Grant ALL PRIVILEGES to the user
+
+![Assign Database Permissions](/src/cpanel-db-user-permissions.png)
+
+::: tip
+Keep your database credentials (database name, username, password) handy. You'll need them during the installation wizard.
+:::
+
+### Step 5: Install Dependencies (Optional)
+
+The package already includes `vendor/` and pre-built npm assets, so this step is **optional**.
 - If you want to update dependencies or rebuild assets, run these from the project root (SSH required):
 
 ```bash
@@ -39,8 +78,9 @@ php artisan storage:link
 
 If SSH is not available, you can skip this step as dependencies are already included.
 
-4) Point the web root
-- Ensure your domain points to the project's `public/` directory.
+### Step 6: Point the Web Root
+
+Ensure your domain points to the project's `public/` directory.
 
 ### Nginx Configuration
 
@@ -105,16 +145,71 @@ sudo nginx -t  # Test configuration
 sudo systemctl reload nginx  # Reload Nginx
 ```
 
-5) Run the web installer
-- Visit your domain (or `https://your-domain.com/install`). Follow the wizard to complete:
-  - Server checks
-  - Database details (host, port, name, username, password)
-  - Site details (title, description)
-  - Admin user (name, email, password)
+### Step 7: Run the Web Installer
+
+Visit your domain (or `https://your-domain.com/install`). The web installer will guide you through the installation process.
+
+#### Installation Step 1: Welcome
+
+The installer starts with a welcome screen and system requirements check.
+
+![Installation Step 1](/src/installation-step-1.png)
+
+#### Installation Step 2: Database Configuration
+
+Enter your database credentials:
+- Database host (usually `localhost` or `127.0.0.1`)
+- Database port (usually `3306`)
+- Database name
+- Database username
+- Database password
+
+![Installation Step 2](/src/installation-step-2.png)
+
+#### Installation Step 3: Site Information
+
+Configure your site details:
+- Site name
+- Site URL
+- Site description
+
+![Installation Step 3](/src/installation-step-3.png)
+
+#### Installation Step 4: Admin Account
+
+Create your first admin user:
+- Admin name
+- Admin email
+- Admin password
+
+![Installation Step 4](/src/installation-step-4.png)
+
+#### Installation Step 5: Finalize
+
+Review your settings and complete the installation.
+
+![Installation Step 5](/src/installation-step-5.png)
+
+#### Installation Success
+
+Once installation is complete, you'll see a success message with options to:
+- Go to Admin Panel
+- Visit Homepage
+
+![Installation Success](/src/installation-success.png)
+
+![Installation Success - Homepage](/src/installation-success-home.png)
+
+![Installation Success - Login](/src/installation-success-login.png)
+
+::: tip
+The installer writes a default `.env` automatically. You don't need to create it manually.
+:::
 
 Notes:
-- The installer writes a default `.env` automatically. You don’t need to create it.
-- After completion, you’ll see “Installation Complete” and a button to open the admin panel.
+- The installer automatically creates the `.env` file with your configuration
+- After completion, you can access the admin panel at `/admin/login`
+- Your admin credentials are the ones you set during installation
 
 ---
 
@@ -203,13 +298,25 @@ Visit `http://your-domain.com/install` in your browser.
 
 ### Step 5: Follow Installation Wizard
 
-The web installer will guide you through:
+The web installer will guide you through the installation process with visual steps:
 
-1. **System Check** - Verifies server requirements
+1. **Welcome & System Check** - Verifies server requirements
+   ![Installation Step 1](/src/installation-step-1.png)
+
 2. **Database Setup** - Configure database connection
-3. **Admin Account** - Create first admin user
-4. **Site Settings** - Set site name, URL, email
-5. **Finalize** - Complete installation
+   ![Installation Step 2](/src/installation-step-2.png)
+
+3. **Site Settings** - Set site name, URL, description
+   ![Installation Step 3](/src/installation-step-3.png)
+
+4. **Admin Account** - Create first admin user
+   ![Installation Step 4](/src/installation-step-4.png)
+
+5. **Finalize** - Review and complete installation
+   ![Installation Step 5](/src/installation-step-5.png)
+
+6. **Success** - Installation complete!
+   ![Installation Success](/src/installation-success.png)
 
 ::: tip
 Keep your database credentials handy. You'll need:

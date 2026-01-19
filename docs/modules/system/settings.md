@@ -18,6 +18,9 @@ Configure your site's basic information and branding:
 - **Keywords** - SEO keywords separated by commas
 - **Site Author** - Name of the site author or organization
 - **Footer Text** - Text displayed in the website footer
+- **Header Ticker Text** - Text to display in the moving ticker at the top of the header (max 500 characters)
+  - This text will scroll continuously in the header ticker
+  - Only visible when using News Header layout
 - **Logo Height** - Logo height in rem units (default: 3)
 - **Admin Logo Height** - Logo height in admin panel in rem units (default: 3)
 - **Logo** - Upload your site logo (PNG with transparent background recommended, max 2MB)
@@ -28,6 +31,8 @@ Configure your site's basic information and branding:
 Configure your purchase token for marketplace access:
 
 - **Purchase Token** - Your purchase token is used to access modules and themes from the marketplace. You can obtain this token from your CodeCanyon purchase or contact us directly. This token is automatically generated when you first access the Add Module page, or you can set it manually here.
+  - Password field (masked by default, can be revealed)
+  - Maximum 255 characters
 
 ::: tip
 The purchase token is used for authentication when downloading modules and themes from the marketplace. Keep this token secure and don't share it publicly.
@@ -42,10 +47,46 @@ Manage your site's contact details:
 - **Email** - Contact email address
 - **Phone** - Contact phone number
 - **Address** - Street address
+- **Google Map Embed Code** - Embed code for Google Map
+  - Get the embed code from Google Maps by clicking the share button and selecting "Embed map"
+  - Copy the embed code and paste it here
 - **City** - City name
 - **State/Province** - State or province
 - **ZIP/Postal Code** - Postal code
-- **Country** - Select from a comprehensive list of countries
+- **Country** - Select from a comprehensive list of countries (searchable dropdown)
+
+### Contact Form Fields Configuration
+
+Configure which fields appear on the contact form and their validation rules:
+
+- **Form Fields** - Repeater field to configure contact form fields
+  - **Field Name** (Required) - Internal field name (e.g., `name`, `email`, `phone`)
+  - **Field Label** (Required) - Display label for the field
+  - **Field Type** (Required) - Select from:
+    - Text
+    - Email
+    - Phone
+    - Textarea
+    - Number
+    - URL
+  - **Enabled** - Toggle to show/hide this field on the form (default: enabled)
+  - **Required** - Toggle to make this field required (default: disabled)
+  - **Validation Rules** - Additional validation rules (e.g., `max:255|min:3|regex:pattern`)
+    - Separate multiple rules with `|`
+  - **Placeholder Text** - Placeholder text for the input field
+  - **Rows** (for textarea) - Number of rows for textarea fields (default: 5)
+
+**Default Fields:**
+- Name (text, required, enabled)
+- Email (email, required, enabled)
+- Phone (tel, required, enabled)
+- Message (textarea, required, enabled)
+
+**Features:**
+- Drag to reorder fields
+- Default fields (name, email, phone, message) cannot be deleted
+- Add custom fields as needed
+- Fields are collapsible for easier management
 
 ## Third Party Credentials Tab
 
@@ -56,22 +97,12 @@ Configure OAuth providers for social login:
 **Google Login:**
 - **Enable Google Login** - Toggle to enable/disable
 - **Google Client ID** - Required when enabled
-- **Google Client Secret** - Required when enabled
+- **Google Client Secret** - Required when enabled (password field, revealable)
 
 **Facebook Login:**
 - **Enable Facebook Login** - Toggle to enable/disable
 - **Facebook App ID** - Required when enabled
-- **Facebook App Secret** - Required when enabled
-
-**GitHub Login:**
-- **Enable GitHub Login** - Toggle to enable/disable
-- **GitHub Client ID** - Required when enabled
-- **GitHub Client Secret** - Required when enabled
-
-**LinkedIn Login:**
-- **Enable LinkedIn Login** - Toggle to enable/disable
-- **LinkedIn Client ID** - Required when enabled
-- **LinkedIn Client Secret** - Required when enabled
+- **Facebook App Secret** - Required when enabled (password field, revealable)
 
 ### Google reCAPTCHA Configuration
 
@@ -79,7 +110,7 @@ Protect forms with Google reCAPTCHA:
 
 - **Enable Google reCAPTCHA** - Toggle to enable/disable
 - **reCAPTCHA Site Key** - Public key for frontend forms (required when enabled)
-- **reCAPTCHA Secret Key** - Private key for server-side verification (required when enabled)
+- **reCAPTCHA Secret Key** - Private key for server-side verification (required when enabled, password field, revealable)
 
 reCAPTCHA can be used on login, registration, contact forms, and other forms throughout the application.
 
@@ -315,3 +346,7 @@ These changes are written to the `.env` file and take effect immediately after s
 - Conditional fields appear/disappear based on toggle selections
 - Test features (email/SMS) help verify configurations before going live
 - All file uploads respect the configured filesystem disk setting
+- Contact form fields can be customized, reordered, and configured with validation rules
+- Header ticker text is only visible when using News Header layout
+- Password fields (Purchase Token, API secrets) can be revealed by clicking the eye icon
+- Google Maps embed code can be obtained from Google Maps by clicking Share → Embed map

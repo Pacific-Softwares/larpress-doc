@@ -424,32 +424,128 @@ Contains demo data in JSON format for one-click theme demo import.
 - `name` - Display name
 - `slug` - Unique identifier (lowercase, letters/numbers/hyphens/underscores only)
 - `version` - Version number (e.g., "1.0.0")
+
 **Optional fields:**
+
 - `description` - Theme description
 - `author` - Author name
 - `protected` - Set to `true` to prevent overwriting via upload
-- `features` - Object with feature flags
 - `screenshot` - Path to screenshot image
+- `settings` - Object defining theme feature settings
+- `header` - Object defining available header layouts
+- `footer` - Object defining available footer layouts
+
 **Example:**
 
 ```json
-
 {
-
   "name": "My Custom Theme",
   "slug": "my_custom_theme",
   "version": "1.0.0",
   "description": "A beautiful theme with full customization",
   "author": "Your Name",
   "protected": false,
-  "features": {
-    "settings_integration": true,
-    "responsive": true,
-    "seo_optimized": true
+  "settings": {
+    "primary_color": {
+      "name": "Primary Color",
+      "type": "text",
+      "default": "#667eea",
+      "helper_text": "The main color used throughout the theme",
+      "placeholder": "Enter hex color code"
+    },
+    "layout_style": {
+      "name": "Layout Style",
+      "type": "dropdown",
+      "default": "boxed",
+      "helper_text": "Choose the overall layout style",
+      "options": [
+        {
+          "name": "Boxed",
+          "value": "boxed"
+        },
+        {
+          "name": "Full Width",
+          "value": "fullwidth"
+        }
+      ]
+    }
+  },
+  "header": {
+    "active": "default",
+    "options": [
+      {
+        "slug": "default",
+        "name": "Default Header",
+        "description": "Standard header with logo and navigation",
+        "preview": "headers/default.jpg"
+      },
+      {
+        "slug": "centered",
+        "name": "Centered Header",
+        "description": "Centered logo with navigation below",
+        "preview": "headers/centered.jpg"
+      }
+    ]
+  },
+  "footer": {
+    "active": "default",
+    "options": [
+      {
+        "slug": "default",
+        "name": "Default Footer",
+        "description": "Standard footer with links and copyright",
+        "preview": "footers/default.jpg"
+      },
+      {
+        "slug": "minimal",
+        "name": "Minimal Footer",
+        "description": "Simple footer with minimal content",
+        "preview": "footers/minimal.jpg"
+      }
+    ]
   }
 }
-
 ```
+
+#### Theme Settings Configuration
+
+The `settings` object allows you to define customizable features for your theme. Each feature can be:
+
+- **Text Input** - For simple text values (colors, text, etc.)
+  - `name` - Display label
+  - `type` - Set to `"text"`
+  - `default` - Default value
+  - `helper_text` - Help text shown below the field
+  - `placeholder` - Placeholder text
+
+- **Dropdown** - For selecting from predefined options
+  - `name` - Display label
+  - `type` - Set to `"dropdown"`
+  - `default` - Default selected value
+  - `helper_text` - Help text shown below the field
+  - `options` - Array of option objects with `name` and `value`
+
+#### Header Configuration
+
+The `header` object defines available header layouts:
+
+- `active` - The currently active header slug
+- `options` - Array of header option objects:
+  - `slug` - Unique identifier for the header
+  - `name` - Display name
+  - `description` - Description of the header style
+  - `preview` - Path to preview image (optional)
+
+#### Footer Configuration
+
+The `footer` object defines available footer layouts:
+
+- `active` - The currently active footer slug
+- `options` - Array of footer option objects:
+  - `slug` - Unique identifier for the footer
+  - `name` - Display name
+  - `description` - Description of the footer style
+  - `preview` - Path to preview image (optional)
 
 **⚠️ Important:** If a theme with the same `slug` already exists, uploading a new version will **replace** the existing theme (unless marked as `protected`). The system automatically backs up and replaces files, republishes assets, and clears caches.
 
@@ -550,27 +646,21 @@ Contains demo data in JSON format for one-click theme demo import.
 Sample minimal config:
 
 ```json
-
 {
-
   "name": "Demo Theme",
   "slug": "demo_theme",
   "version": "1.0.0",
   "description": "Demo Theme is dynamic theme with full settings integration",
   "author": "System",
-  "protected": true,
-  "features": {
-    "settings_integration": true,
-    "responsive": true,
-    "seo_optimized": true
-  }
+  "protected": true
 }
-
 ```
 
 Required fields: `name`, `slug`, `version`. The `slug` must match `/^[a-z0-9\-_]+$/`.
 
-Optional fields commonly used: `description`, `author`, `screenshot`, `features` or `settings` for feature flags and defaults.
+Optional fields commonly used: `description`, `author`, `screenshot`, `settings` for theme features, `header` for header layouts, and `footer` for footer layouts.
+
+For a complete example with settings, header, and footer configuration, see the [Theme Structure Explained](#theme-structure-explained) section above.
 
 
 
@@ -636,9 +726,60 @@ Notes:
 
 - You can also download a sample theme template to get started
 
+## Managing Themes
+
+### Theme Actions
+
+Each theme in the list has the following actions available:
+
+- **View** - View theme details and usage instructions in a modal
+- **Settings** - Configure theme features, header, and footer (only visible if theme has features defined)
+- **Demo Manager** - Manage demo data for the active theme (only visible for active theme)
+- **Delete** - Remove the theme from the system (hidden for protected or active themes)
+
+### Theme Settings
+
+Themes can have customizable settings that allow users to configure theme features without editing code. Access theme settings via **System → Themes → [Theme Name] → Settings**.
+
+![Theme Settings](/src/theme-settings.png)
+
+The settings page is organized into three tabs:
+
+#### Settings Tab
+
+Configure theme feature settings defined in the theme's `theme.json` file. Features can be:
+- **Text inputs** - For simple text values
+- **Dropdowns** - For selecting from predefined options
+
+Features are automatically generated from the theme's configuration, allowing theme developers to provide customizable options.
+
+#### Header Tab
+
+Select a header layout for your theme from available header options.
+
+![Theme Header Settings](/src/theme-header.png)
+
+Header options are defined in the theme's `theme.json` file. You can:
+- View available header layouts with previews
+- Select the active header layout
+- Switch between different header styles
+
+#### Footer Tab
+
+Select a footer layout for your theme from available footer options.
+
+![Theme Footer Settings](/src/theme-footer.png)
+
+Footer options are defined in the theme's `theme.json` file. You can:
+- View available footer layouts with previews
+- Select the active footer layout
+- Switch between different footer styles
+
 ## Theme Demo Data Manager
 
-The Theme Demo Data Manager allows you to manage demo data for your active theme. Access it via **System → Themes → [Theme Name] → Demo Data Manager**.
+The Theme Demo Data Manager allows you to manage demo data for your active theme. Access it via **System → Themes → [Theme Name] → Demo Manager**.
+
+![Theme Demo Manager](/src/theme-demo-manager.png)
 
 ### Features
 
@@ -851,6 +992,53 @@ On frontend requests, larPress binds a custom view finder that prioritizes the a
 {{ setting('site_name') }}
 {{ setting('site_description') }}
 {{ setting('contact_email') }}
+
+```
+
+### Theme Settings Helper
+
+Access theme-specific settings in your Blade views:
+
+```blade
+
+<!-- Get theme setting value -->
+{{ theme_setting('primary_color', '#667eea') }}
+{{ theme_setting('layout_style', 'boxed') }}
+
+<!-- Check if setting exists -->
+@if(theme_setting('custom_feature'))
+    <!-- Custom feature is enabled -->
+@endif
+
+```
+
+Theme settings are stored with the prefix `theme_{slug}_`, so a setting key `primary_color` for theme `my_theme` is stored as `theme_my_theme_primary_color`.
+
+### Header and Footer Helpers
+
+Access the active header and footer selections:
+
+```blade
+
+<!-- Get active header slug -->
+{{ theme_header() }}
+
+<!-- Get active footer slug -->
+{{ theme_footer() }}
+
+<!-- Check if specific header is active -->
+@if(theme_header() === 'centered')
+    @include('layouts.headers.centered')
+@else
+    @include('layouts.headers.default')
+@endif
+
+<!-- Check if specific footer is active -->
+@if(theme_footer() === 'minimal')
+    @include('layouts.footers.minimal')
+@else
+    @include('layouts.footers.default')
+@endif
 
 ```
 

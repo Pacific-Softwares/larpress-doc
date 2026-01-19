@@ -15,43 +15,51 @@ When creating or editing content, you'll find the following fields:
 **Basic Info Section:**
 - **Title** (Required) - The page title. The slug is auto-generated from the title but can be edited manually.
 - **Slug** (Required) - URL-friendly identifier. Must be unique per content type.
-- **Icon** (Optional) - Icon identifier for the content.
+- **Unique Code** - Auto-generated unique identifier for referencing content in code (read-only).
 - **Content Type** (Required) - Select from available content types (e.g., Page, Post, Article).
 - **Content Type Category** (Optional) - Organize content into categories.
 - **Layout** (Required) - Choose from active theme layouts.
+- **Content Width** - Select content width: Small, Medium, or Full (default: Full).
+  - Note: Hero layout banner is always full width regardless of this setting.
 - **Order Number** - Numeric value for sorting/ordering content.
 - **Popular** - Toggle to mark content as popular/featured.
-- **Reference/External URL** (Optional) - Link to external resources.
+- **Show Related Page** - Toggle to show related content on the front detail page (default: enabled).
+- **Show Left Sidebar** - Toggle to show left sidebar on the front detail page (default: disabled).
+- **Show Right Sidebar** - Toggle to show right sidebar on the front detail page (default: disabled).
+- **Show Comments** - Toggle to show comments section on the front detail page (default: disabled).
 - **Thumbnail Image** - Upload a thumbnail image for the content.
 - **Banner Image** - Upload a banner image for the content.
+- **Gallery Images** - Upload multiple images for gallery layout. Images will be displayed in a grid with hover effects and click-to-preview functionality.
+
+![Content Sidebar Options](/src/content-sidebar.png)
 
 ### Content Section
 
 - **Short Description** - Brief summary of the content.
-- **Description** - Rich text editor for main content with support for:
-  - Bold, italic, underline
-  - Bullet and numbered lists
-  - Links
-  - Code blocks
-  - HTML block shortcodes: `[[slug-of-html-block]]`
+- **Description** - HTML code editor for main content. Insert full HTML here - it will be saved exactly as-is.
+  - **Preview HTML** - Button to preview the HTML content in a new tab before saving.
+  - Supports full HTML markup including custom CSS and JavaScript.
 
-::: tip Shortcodes
-You can insert reusable HTML blocks into your content using shortcodes:
-```
-[[slug-of-html-block]]
-```
-This will be replaced with the content of the HTML block matching that slug.
+::: tip HTML Editor
+The description field uses an HTML code editor, allowing you to write complete HTML markup. Use the "Preview HTML" button to see how your content will look before saving.
 :::
 
 ### Status & Meta Section
 
 **Status Options:**
-- **Draft** - Content is saved but not visible to the public.
-- **Published** - Content is live and visible.
-- **Scheduled** - Content will be published at a specific date/time.
+- **Draft** - Work in progress, not visible on frontend (Gray badge).
+- **Review** - Content is ready but awaiting approval (Orange badge).
+- **Published** - Live on the website (Green badge).
+- **Archived** - Old or retired content, kept for records (Muted badge).
+- **Scheduled** - Will auto-publish in future (Purple badge).
+- **Private** - Visible only to logged-in users (Red badge).
 
 When selecting "Scheduled" status:
-- **Scheduled Date** - Set the date and time when content should become visible.
+- **Scheduled Date** - Set the date and time when content should become visible (required, must be in the future).
+
+**Published Date:**
+- Automatically set when content is published or when scheduled content is published.
+- Displayed as read-only information showing when the content was first published.
 
 **SEO Settings:**
 - **Meta Title** - SEO title (max 60 characters).
@@ -69,14 +77,40 @@ Use the repeater field to add custom key-value pairs for additional metadata:
 ### Content List View
 
 The content list provides:
-- **Search** - Search by title.
-- **Filters** - Filter by status (Draft, Published, Scheduled).
+- **Search** - Search by title or unique code.
+- **Filters**:
+  - **Content Type** - Filter by one or more content types (multi-select, searchable).
+  - **Category** - Filter by one or more categories (multi-select, searchable).
+  - **Status** - Filter by status (multi-select): Draft, Review, Published, Archived, Scheduled, Private.
+  - **Layout** - Filter by layout (multi-select, searchable).
+  - **Popular/Featured** - Filter by popular flag (All, Popular only, Not popular).
 - **Columns**:
   - Title (searchable, sortable)
+  - Code (copyable, searchable, hidden by default)
   - Slug (copyable)
-  - Type (badge)
-  - Status (color-coded badge)
-  - Updated date
+  - Type (badge showing content type name)
+  - Status (color-coded badge with status name)
+  - Updated date (sortable, default sort)
+
+### Content Actions
+
+Each content item has the following actions:
+
+- **Preview** - View the content on the frontend in a new tab.
+- **Duplicate** - Create a copy of the content with new content type and category selection.
+  - Opens a modal to select:
+    - New Content Type (required)
+    - New Category (optional)
+  - The duplicated content will have:
+    - Title with " (Copy)" appended
+    - New slug (auto-generated if conflict exists)
+    - Status set to Draft
+    - Published date reset
+    - Scheduled date reset
+    - All other content copied (description, images, meta, etc.)
+  - After duplication, you'll be redirected to edit the new content.
+- **Edit** - Modify the content.
+- **Delete** - Remove the content from the system.
 
 ### Bulk Actions
 
@@ -84,11 +118,14 @@ The content list provides:
 
 ### Content Status
 
-Content can have three statuses:
+Content can have six statuses:
 
-1. **Draft** - Not visible to public
-2. **Published** - Live and visible
-3. **Scheduled** - Will be published automatically at the scheduled date/time
+1. **Draft** (Gray) - Work in progress, not visible on frontend
+2. **Review** (Orange) - Content is ready but awaiting approval
+3. **Published** (Green) - Live on the website
+4. **Archived** (Muted) - Old or retired content, kept for records
+5. **Scheduled** (Purple) - Will auto-publish in future
+6. **Private** (Red) - Visible only to logged-in users
 
 Scheduled content automatically becomes published when the scheduled date/time is reached.
 
@@ -142,15 +179,53 @@ Content descriptions automatically parse shortcodes:
 
 Shortcodes are replaced when content is retrieved using the helper functions.
 
+## Sidebar Configuration
+
+Content pages support flexible sidebar layouts:
+
+- **Left Sidebar** - Enable to show a left sidebar on the front detail page
+- **Right Sidebar** - Enable to show a right sidebar on the front detail page
+- **Both Sidebars** - You can enable both left and right sidebars simultaneously
+- **Related Content** - Enable to show related content on the detail page
+- **Comments** - Enable to show comments section on the detail page
+
+Sidebar visibility is controlled per content item, allowing you to customize the layout for each page individually.
+
+## Duplicating Content
+
+The duplicate feature allows you to quickly create copies of existing content:
+
+1. Click the **Duplicate** action button on any content item
+2. Select the new **Content Type** (required)
+3. Optionally select a new **Category**
+4. Click **Duplicate**
+
+The system will:
+- Create a new content item with all data copied
+- Append " (Copy)" to the title
+- Generate a unique slug (adding numbers if needed)
+- Set status to Draft
+- Reset published and scheduled dates
+- Redirect you to edit the new content
+
+This is useful for:
+- Creating variations of similar content
+- Moving content between types
+- Creating templates for future content
+- Testing different layouts or categories
+
 ## Best Practices
 
 1. **Consistent Layouts** - Keep layouts consistent with the selected content type.
 2. **SEO Optimization** - Always fill in meta title, description, and keywords for better search engine visibility.
 3. **Use Categories** - Organize related content using categories.
 4. **Scheduled Publishing** - Use scheduled status for time-sensitive content.
-5. **HTML Blocks** - Create reusable HTML blocks and reference them via shortcodes for consistent design.
+5. **HTML Editor** - Use the HTML editor for full control over content markup and styling.
 6. **Additional Data** - Use additional data fields for custom metadata that doesn't fit standard fields.
 7. **Popular Flag** - Mark featured or important content as popular for easy filtering.
+8. **Sidebar Configuration** - Configure sidebars per content item for flexible layouts.
+9. **Content Duplication** - Use the duplicate feature to quickly create similar content.
+10. **Unique Code** - Use the auto-generated unique code to reference content in your code.
 
 ## Translations
 
@@ -200,6 +275,11 @@ The translation modal provides:
 - Slugs are auto-generated from titles but can be manually edited
 - Each content type can have unique slugs (same slug can exist in different types)
 - Use the order field to control display order when listing content
-- Thumbnail and banner images are stored using the configured filesystem disk
-- Rich editor supports HTML, so you can add custom markup if needed
+- Thumbnail, banner, and gallery images are stored using the configured filesystem disk
+- HTML editor allows full HTML markup - use the preview button to check your content
+- Content width setting doesn't apply to Hero layout banners (they're always full width)
+- Sidebar toggles allow flexible page layouts per content item
+- Duplicate feature preserves all content data except status and dates
+- Unique code is auto-generated and can be used to reference content programmatically
 - Translations work independently - you can have different content for different languages while maintaining the same structure
+- Status badges are color-coded for quick visual identification
