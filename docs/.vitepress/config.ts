@@ -10,7 +10,7 @@ export default {
 	themeConfig: {
 		logo: '/logo/larpress-logo.svg',
 		logoDark: '/logo/larpress-logo-dark.svg',
-		siteTitle: 'larpress',
+		siteTitle: false,
 		nav: [
 			{ text: 'Introduction', link: '/getting-started/introduction' },
 			{ text: 'Getting started', link: '/getting-started/installation' },
